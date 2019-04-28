@@ -20,9 +20,8 @@ class SurveysController < ApplicationController
 
   def welcome_message_for_voice(survey)
     response = Twilio::TwiML::VoiceResponse.new
-    response.say(message: "Thank you for taking the #{survey.title} survey")
+    response.play(url: 'https://s3-ap-northeast-1.amazonaws.com/poodll-audioprocessing-out/CP/30/localhostuser/recordmp3online.com/poodll/poodllfile5cc4ab744eb831.mp3')
     response.redirect question_path(survey.first_question.id), method: 'GET'
-
     response.to_s
   end
 end

@@ -12,10 +12,10 @@ class AnswersController < ApplicationController
 
   def answer_params
     {
-      from:        params[:From],
-      content:     params[:RecordingUrl] || params[:Digits],
+      from: params[:From],
+      content: params[:RecordingUrl] || params[:Digits],
       question_id: params[:question_id],
-      call_sid:    params[:CallSid]
+      call_sid: params[:CallSid]
     }
   end
 end

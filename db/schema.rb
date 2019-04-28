@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404115135) do
+ActiveRecord::Schema.define(version: 20190427170545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,11 +32,12 @@ ActiveRecord::Schema.define(version: 20160404115135) do
   add_index "answers", ["source"], name: "index_answers_on_source", using: :btree
 
   create_table "questions", force: :cascade do |t|
-    t.integer  "survey_id",              null: false
-    t.string   "body",                   null: false
-    t.integer  "type",       default: 0, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "survey_id",                                                                                                                                                             null: false
+    t.string   "body",                                                                                                                                                                  null: false
+    t.integer  "type",       default: 0,                                                                                                                                                null: false
+    t.datetime "created_at",                                                                                                                                                            null: false
+    t.datetime "updated_at",                                                                                                                                                            null: false
+    t.text     "audio_file", default: "https://s3-ap-northeast-1.amazonaws.com/poodll-audioprocessing-out/CP/30/localhostuser/recordmp3online.com/poodll/poodllfile5cc48b263f80d1.mp3"
   end
 
   add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree

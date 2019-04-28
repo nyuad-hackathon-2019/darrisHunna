@@ -1,9 +1,9 @@
 module Voice
   class CreateResponse
     INSTRUCTIONS = {
-      'free'    => 'Please record your answer after the beep and then hit the pound sign',
-      'numeric' => 'Please press a number between 0 and 9 and then hit the pound sign',
-      'yes_no'  => 'Please press the 1 for yes and the 0 for no and then hit the pound sign'
+      'free' => 'Please record your answer after the beep and then hit the pound sign',
+      'numeric' => 'Please press a number and then hit the pound sign',
+      'yes_no' => 'Please press the 1 for yes and the 0 for no and then hit the pound sign'
     }.freeze
 
     def self.for(question)
@@ -18,8 +18,9 @@ module Voice
       return exit_message if question == Question::NoQuestion
 
       response = Twilio::TwiML::VoiceResponse.new
-      response.say(message: question.body)
-      response.say(message: INSTRUCTIONS.fetch(question.type))
+      response.play(url: question.audio_file)
+      # response.say(message: question.body)
+      # response.say(message: INSTRUCTIONS.fetch(question.type))
       if question.free?
         response.record action: answers_path(question.id),
                         transcribe: true,
@@ -37,7 +38,8 @@ module Voice
 
     def exit_message
       response = Twilio::TwiML::VoiceResponse.new
-      response.say(message: 'Thanks for your time. Good bye')
+      response.play(url: 'https://s3-ap-northeast-1.amazonaws.com/poodll-audioprocessing-out/CP/30/localhostuser/recordmp3online.com/poodll/poodllfile5cc4acb27f1181.mp3')
+      # response.say(message: 'Thanks for your time. will get back ')
       response.hangup
       response.to_s
     end
