@@ -2,10 +2,9 @@ source 'https://rubygems.org'
 
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jbuilder', '~> 2.0'
-gem 'pg'
 gem 'puma'
-gem 'rails', '4.2.11.1'
-
+gem 'rails'
+gem 'pg', '1.1.4'
 gem 'haml'
 gem 'twilio-ruby', '>= 5.0.0'
 
